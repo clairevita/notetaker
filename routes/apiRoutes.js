@@ -22,6 +22,9 @@ module.exports = function(app) {
             //Defines the results as an interactable noteList
             const noteList = JSON.parse(results)
             //Pushes the userNote to the noteList
+            console.log(noteList.length);
+            userNote.title = JSON.stringify(noteList.length + 1) + ". " + userNote.title;
+        
             noteList.push(userNote);
             //Overwrites the database with the updated list
             fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(noteList), function (err) {
@@ -30,4 +33,13 @@ module.exports = function(app) {
             });
         });
     });
+
+    app.delete("/api/notes/", function(req, res){
+        fs.readFile(path.join(__dirname, "../db/db.json"), "utf8", function (err, results) {
+            if (err) throw err;
+            //Here we are responding to the call, with our results parsed for the front end.
+            let beNum = results.length;
+            let feNum = document.getElementsByTagName("li");
+        });
+    })
   };
