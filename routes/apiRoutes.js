@@ -2,6 +2,7 @@
 var fs = require("fs");
 var path = require("path");
 
+
 //This content is exported when called.
 module.exports = function(app) {
     //When the page is loaded, a GET call is committed to our database, this express call retrieves our data structure so the page can read it.
@@ -24,7 +25,8 @@ module.exports = function(app) {
             //Pushes the userNote to the noteList
             console.log(noteList.length);
             userNote.title = JSON.stringify(noteList.length + 1) + ". " + userNote.title;
-        
+            userNote.id = noteList.length + 1;
+            console.log(userNote);
             noteList.push(userNote);
             //Overwrites the database with the updated list
             fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(noteList), function (err) {
@@ -34,12 +36,10 @@ module.exports = function(app) {
         });
     });
 
-    app.delete("/api/notes/", function(req, res){
-        fs.readFile(path.join(__dirname, "../db/db.json"), "utf8", function (err, results) {
-            if (err) throw err;
-            //Here we are responding to the call, with our results parsed for the front end.
-            let beNum = results.length;
-            let feNum = document.getElementsByTagName("li");
-        });
+    app.delete("/api/notes/:id", function(req, res){
+        const deleteReq = req.params.id;
+        console.log(deleteReq);
+
+
     })
   };
