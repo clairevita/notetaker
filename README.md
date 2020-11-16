@@ -1,5 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.porg/licenses/MIT)
-  # Team Profile Generator
+  # Note Taker App
   ## Table of Contents
   - [About](#about)
   - [Installation](#installation)
